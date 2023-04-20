@@ -42,5 +42,3 @@ Ambos analizamos la problemática e identificación de errores.
             System.err.println("Opción inválida");
         }
     }while (a > 0 || a < 6);
-
--
