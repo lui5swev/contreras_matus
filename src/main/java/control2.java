@@ -3,25 +3,8 @@ import java.util.Scanner;
 
 public class control2 {
     public static void main(String[] args) {
-        String [][] registro = new double[50][3];
+        int[][] registro = new int[50][3];
         int a = -1;
-
-
-
-
-        do {
-            System.out.println("""
-                Menú
-                1) Agregar persona.
-                2) Mostrar la cantidad de personas mayores de edad.
-                3) Mostrar la cantidad de personas menores de edad.
-                4) Mostrar la cantidad de personas de tercera edad.
-                5) Mostrar la cantidad de personas según estado civil (Soltero/a - Casado/a).
-                6)Salir.
-                """);
-
-
-
 
             do {
                 try {
@@ -30,8 +13,6 @@ public class control2 {
                     System.err.println("Opción inválida");
                 }
             }while (a > 0 || a < 6);
-
-
 
 
             if(a == 1) {
@@ -152,7 +133,19 @@ public class control2 {
             } else if(a == 6) {
                 System.out.println("Programa finalizado");
             }
-        }while (a == 6);
+        }
+
+    private static void menu() {
+        do {
+            System.out.println("""
+                Menú
+                1) Agregar persona.
+                2) Mostrar la cantidad de personas mayores de edad.
+                3) Mostrar la cantidad de personas menores de edad.
+                4) Mostrar la cantidad de personas de tercera edad.
+                5) Mostrar la cantidad de personas según estado civil (Soltero/a - Casado/a).
+                6)Salir.
+                """);
     }
 
 
