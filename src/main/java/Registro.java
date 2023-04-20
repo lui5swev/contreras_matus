@@ -45,6 +45,7 @@ public class Registro {
 
                     while(true) {
                         try {
+                            System.out.println("Agregue el nombre: ");
                             nombre = new Scanner(System.in).nextLine();
                         } catch (InputMismatchException e) {
                             System.err.println("Opción inválida");
@@ -58,6 +59,7 @@ public class Registro {
 
                     while(true) {
                         try {
+                            System.out.println("Estado civil: ");
                             Scanner sc = new Scanner(System.in);
 
                             Estadocivil = sc.nextLine();
@@ -74,7 +76,7 @@ public class Registro {
                     while(true) {
                         try {
                             Scanner sc = new Scanner(System.in);
-
+                            System.out.println("Edad: ");
                             edad = sc.nextLine();
                         } catch (InputMismatchException e) {
                             System.err.println("Opción inválida");
@@ -96,11 +98,17 @@ public class Registro {
             } else if(opcion == 2) {
                 int mayoresDeEdad = 0;
 
-
+                boolean vacio = false;
                 for (int i = 0; i < matrizRegistro.length; i++) {
-                    if (Integer.parseInt(matrizRegistro[i][2]) >= 18){
-                        mayoresDeEdad++;
+                    vacio = revisarEspacio(i,matrizRegistro);
+                    if (!vacio){
+                        if (Integer.parseInt(matrizRegistro[i][2]) >= 18){
+                            mayoresDeEdad++;
+                        }
+                    }else {
+                        break;
                     }
+
                 }
 
 
@@ -109,30 +117,36 @@ public class Registro {
                 System.out.println("Hay " + mayoresDeEdad + " mayores de edad.");
             } else if(opcion == 3) {
                 int menoresDeEdad = 0;
-                int queSera = obtenerUltimoEspacio(matrizRegistro);
-
-
-
-
+                boolean vacio1 = false;
                 for (int i = 0; i < matrizRegistro.length; i++) {
-                    if (Integer.parseInt(matrizRegistro[i][2]) < 18){
-                        menoresDeEdad++;
+                    vacio1 = revisarEspacio(i,matrizRegistro);
+                    if (!vacio1) {
+
+                        if (Integer.parseInt(matrizRegistro[i][2]) < 18) {
+                            menoresDeEdad++;
+                        }
+                    }else {
+                        break;
                     }
                 }
-
 
 
 
                 System.out.println("Hay " + menoresDeEdad + " menores de edad.");
             } else if(opcion == 4) {
                 int cantidadTerceraEdad = 0;
+                boolean vacio2 = false;
 
                 for (int i = 0; i < matrizRegistro.length; i++) {
-                    if (Integer.parseInt(matrizRegistro[i][2]) >= 65){
-                        cantidadTerceraEdad++;
+                    vacio2 = revisarEspacio(i,matrizRegistro);
+                    if (!vacio2) {
+                        if (Integer.parseInt(matrizRegistro[i][2]) >= 65) {
+                            cantidadTerceraEdad++;
+                        }
+                    }else {
+                        break;
                     }
                 }
-
 
 
 
@@ -142,15 +156,18 @@ public class Registro {
             } else if(opcion == 5) {
                 int casado = 0;
                 int soltero = 0;
+                boolean vacio3 = false;
                 for (int i = 0; i < matrizRegistro.length; i++) {
-                    if (matrizRegistro[i][1].equals(casado/opcion)){
-                        casado++;
+                    vacio3 = revisarEspacio(i, matrizRegistro);
+                    if (!vacio3){
+                        if (matrizRegistro[i][1].equals(casado / opcion)) {
+                            casado++;
 
-                    }else {
-                        soltero++;
+                        } else {
+                            soltero++;
+                        }
                     }
                 }
-
 
 
 
@@ -159,10 +176,16 @@ public class Registro {
             } else if(opcion == 6) {
                 System.out.println("Programa finalizado");
             }
-        }while (opcion == 6);
+        }while (opcion >=1 && opcion <6);
     }
 
-
+    private static boolean revisarEspacio(int i, String[][] matrizRegistro) {
+        if (matrizRegistro[i][0] == null){
+            return true;
+        }else {
+            return false;
+        }
+    }
 
 
     public static int obtenerUltimoEspacio(String [][] registro) {
@@ -186,7 +209,7 @@ public class Registro {
 
     public static int opa(String [][] registro) {
         for(int i = 0; i < registro.length; i++) {
-            if(registro[i][0].equals("")){
+            if(registro[i][0]==null){
                 return registro.length - i;
             }
         }
